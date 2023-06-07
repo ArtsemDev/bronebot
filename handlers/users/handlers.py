@@ -1,7 +1,7 @@
 from datetime import date, time, datetime
 
 from aiogram import F
-from aiogram.types import Message, CallbackQuery, BufferedInputFile, InlineKeyboardMarkup, InputFile
+from aiogram.types import Message, CallbackQuery, BufferedInputFile, InlineKeyboardMarkup
 from aiogram.fsm.context import FSMContext
 from sqlalchemy import delete
 from sqlalchemy.exc import IntegrityError
@@ -39,7 +39,9 @@ async def start_command(message: Message):
 async def menu_handler(message: Message):
     await message.delete()
     await message.answer_photo(
-        photo='AgACAgIAAxkDAAOcZIDLvlNgBS4cTf7WK2WmEqbyBw0AAoLGMRtBHwABSLymwF7nMefyAQADAgADeQADLwQ',
+        photo=BufferedInputFile.from_file(
+            path=BASE_DIR / 'media/menu.png'
+        ),
         caption='MENU'
     )
 
